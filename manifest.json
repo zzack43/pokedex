@@ -1,0 +1,17 @@
+{
+  "name": "Kanto Pokédex",
+  "short_name": "Pokédex",
+  "description": "Identifica Pokémon como nunca na região de Kanto",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#f4f4f4",
+  "theme_color": "#e53935",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/188/188987.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
