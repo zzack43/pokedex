@@ -40,12 +40,9 @@
   <div id="pokedexInfo"></div>
 </div>
 
+
 <script type="module">
   import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2';
-  window.pipeline = pipeline;
-  window.env = env;
-</script>
-<script>
   let classifier = null;
 
   const CAMINHO_DO_BOT = "Xenova/Pokemon-classifier-gen9-1025"; 
@@ -229,8 +226,7 @@
 
     async function predict() {
   const resultElement = document.getElementById("result");
-
-if (!window.pipeline || !window.env) {
+if (!pipeline || !env) {
     resultElement.innerText = "AI library did not load.";
     return;
   }
@@ -238,9 +234,9 @@ if (!window.pipeline || !window.env) {
     if (!classifier) {
       resultElement.innerText = "Initializing AI... Please wait...";
       try {
-                window.env.allowLocalModels = false;
-        window.env.backends.onnx.wasm.numThreads = 1;
-        classifier = await window.pipeline('image-classification', CAMINHO_DO_BOT);
+               env.allowLocalModels = false;
+        env.backends.onnx.wasm.numThreads = 1;
+        classifier = await pipeline('image-classification', CAMINHO_DO_BOT);
       } catch (err) {
         resultElement.innerText = "Error loading AI model.";
         console.error(err);
