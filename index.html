@@ -216,7 +216,10 @@
   const input = document.getElementById('imageUpload');
   const btnCam = document.getElementById('btnCam');
   
-  btnCam.addEventListener('click', () => input.click());
+  btnCam.addEventListener('click', () => {
+  alert('button works');
+  input.click();
+});
 
   input.addEventListener('change', (event) => {
     const reader = new FileReader();
