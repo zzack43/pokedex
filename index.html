@@ -43,10 +43,17 @@
 <script src="https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2"></script>
 
 <script>
-  const { pipeline, env } = window.transformers;
-  env.allowLocalModels = false;
-  env.backends.onnx.wasm.numThreads = 1;
+  let pipeline = null;
+  let env = null;
 
+  if (window.transformers) {
+    pipeline = window.transformers.pipeline;
+    env = window.transformers.env;
+    env.allowLocalModels = false;
+    env.backends.onnx.wasm.numThreads = 1;
+  } else {
+    console.error("Transformers library failed to load.");
+  }
   const CAMINHO_DO_BOT = "Xenova/Pokemon-classifier-gen9-1025"; 
   let classifier = null;
 
@@ -224,8 +231,13 @@
     }
   });
 
-  async function predict() {
-    const resultElement = document.getElementById("result");
+    async function predict() {
+  const resultElement = document.getElementById("result");
+
+if (!pipeline) {
+    resultElement.innerText = "AI library did not load.";
+    return;
+  }
     
     if (!classifier) {
       resultElement.innerText = "Initializing AI... Please wait...";
