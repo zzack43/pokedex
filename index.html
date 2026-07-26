@@ -283,7 +283,23 @@
     reader.readAsDataURL(file);
   }
   
-  document.getElementById('btnPredict').addEventListener('click', predict);
+<script>
+  document.getElementById('btnCam').addEventListener('click', () => {
+    document.getElementById('imageUpload').click();
+  });
+</script>
+ 
+ document.getElementById('btnPredict').addEventListener('click', predict);
+</script>
+
+<script>
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+            .then(reg => console.log('Service Worker registered:', reg.scope))
+            .catch(err => console.error('Service Worker registration failed:', err));
+    });
+}
 </script>
 </body>
 </html>
